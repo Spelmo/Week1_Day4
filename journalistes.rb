@@ -5,65 +5,51 @@ def array_lenght(journatweet)
  return journatweet.length
 end
 
+
 #nombre de pseudo avec des chiffres (17)
 def howmanynumbers(journatweet)
-  a=0
   b=0
-  journatweet.each do |journalistes|
-  a = journalistes.count('0123456789')
-  if a>0
-    b+=1
-  end
-  end
+  journatweet.each {|journalistes| b+=1 if journalistes.count('0123456789')>0}
   return b
 end
+
 
 #nombre de pseudo contenant 'aude' sans casse (3)
 def howmanyaude(journatweet)
   c=0
-  journatweet.each do |journalistes|
-  a = journalistes.include?("aude")
-  b = journalistes.include?("Aude")
-  if a==true || b==true
-    c += 1
-  end
-  end
+  journatweet.each {|journalistes| c+=1 if journalistes.downcase.include?("aude")===true}
   return c
 end
+
 
 #Combien commencent par une majuscule ? (209)
 def howmanyuppercasestart(journatweet)
   b=0
-  journatweet.each do |journalists|
-    a=journalists[1].scan(/[A-Z]/).length
-    if a>0
-      b+=1
-    end
-  end
+  journatweet.each {|journalists| b+=1 if journalists[1].scan(/[A-Z]/).length>0}
   return b
 end
+
 
 #combien contiennent une majuscule ? > même chose sans le [1] (215)
 def howmanyuppercase(journatweet)
   b=0
-  journatweet.each do |journalists|
-    a=journalists.scan(/[A-Z]/).length
-    if a>0
-      b+=1
-    end
-  end
+  journatweet.each {|journalists| b+=1 if journalists.scan(/[A-Z]/).length>0}
   return b
 end
 
-#combien contiennent une majuscule ? > même chose sans le [1] (215)
+
+#combien contiennent un underscore ?
 def howmanyunderscore(journatweet)
   b=0
-  journatweet.each do |journalists|
-    a=journalists.scan(/[_]/).length
-    if a>0
-      b+=1
-    end
-  end
+  journatweet.each {|journalists| b+=1 if journalists.scan(/[_]/).length>0}
+  return b
+end
+
+
+#combien d'underscore en général ?
+def howmanyunderscore2(journatweet)
+  b = 0
+  journatweet.each {|journalists| b+=journalists.scan('_').length }
   return b
 end
 
@@ -73,10 +59,9 @@ def alphasorting(journatweet)
 end
 
 
-puts "there are #{array_lenght(journatweet)} journalists."
 puts "there are #{howmanynumbers(journatweet)} journalists with numbers."
 puts "there are #{howmanyaude(journatweet)} aude."
 puts "there are #{howmanyuppercasestart(journatweet)} with upper case at the beginning."
 puts "there are #{howmanyuppercase(journatweet)} with upper case"
-puts "there are #{howmanyunderscore(journatweet)} with underscore"
+puts "there are #{howmanyunderscore(journatweet)} pseudos with underscore and #{howmanyunderscore2(journatweet)} underscores in general"
 puts "List of sorted names: #{alphasorting(journatweet)}"
