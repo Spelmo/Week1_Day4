@@ -20,7 +20,7 @@ end
 
 #Crypto qui a la plus faible valeur
 def smallestvalue(crypto)
-crypto.each { |nom, valeur| return "L'une des crypto avec la valeur la plus faible est #{nom}, elle est à $#{valeur}." if valeur == crypto.values.min}
+crypto.each { |nom, valeur| puts "L'une des crypto avec la valeur la plus faible est #{nom}, elle est à $#{valeur}." if valeur == crypto.values.min}
 end
 
 
@@ -58,10 +58,10 @@ end
 
 puts biggestvalue(crypto)
 gets.chomp
-puts smallestvalue(crypto)
+smallestvalue(crypto)
 gets.chomp
 puts "Il y a #{includecoin(coinname)} cryptos qui contiennent le mot 'coin', dont #{includecoindown(coinname)} avec 'coin' en downcase."
-get.chomp
+gets.chomp
 lessthansixth(crypto)
 gets.chomp
 puts highestlessthansixth(crypto)
